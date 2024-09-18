@@ -1,0 +1,8 @@
+1. Tokenization
+Technique:
+- Word tokenization: Break into individual words
+- Character tokenization: Chinese, Japanese
+- Subword tokenization: 'Chatbots' => 'Chat' and 'bots'
+Tools:
+ - Basic: NLTK, Spacy, BERT tokenizer
+ - Advanced: Byte-Pair, SentencePiece
