@@ -1,8 +1,106 @@
-1. Tokenization
-Technique:
-- Word tokenization: Break into individual words
-- Character tokenization: Chinese, Japanese
-- Subword tokenization: 'Chatbots' => 'Chat' and 'bots'
-Tools:
- - Basic: NLTK, Spacy, BERT tokenizer
- - Advanced: Byte-Pair, SentencePiece
+Preliminaries
+	Sentence segmentation and word tokenization.
+Frequent steps
+	Stop word removal, stemming and lemmatization, removing digits/punctuation, lowercasing, etc.
+Other steps
+	Normalization, language detection, code mixing, transliteration, etc.
+Advanced processing
+	POS tagging, parsing, coreference resolution, etc
+
+Kaggle link for practice step by step:	https://www.kaggle.com/code/sudalairajkumar/getting-started-with-text-preprocessing/notebook
+
+==============================================================================================================================
+
+	1. Tokenization
+	Technique:
+	- Sentence segmentation: Break paragraph into sentences
+	- Word tokenization: Break into individual words
+	- Character tokenization: Chinese, Japanese
+	- Subword tokenization: 'Chatbots' => 'Chat' and 'bots'
+	Tools:
+	 - Basic: NLTK, Spacy, BERT tokenizer
+	 - Advanced: Byte-Pair, SentencePiece
+	 
+While readily available solutions work for most of our needs and most NLP libraries
+will have a tokenizer and sentence splitter bundled with them, it’s important to
+remember that they’re far from perfect. For example, consider this sentence: “Mr. Jack
+O’Neil works at Melitas Marg, located at 245 Yonge Avenue, Austin, 70272.” If we run
+this through the NLTK tokenizer, O, ‘, and Neil are identified as three separate tokens.
+Similarly, if we run the sentence: “There are $10,000 and €1000 which are there just
+for testing a tokenizer” through this tokenizer, while $ and 10,000 are identified as
+separate tokens, €1000 is identified as a single token. In another scenario, if we want
+to tokenize tweets, this tokenizer will separate a hashtag into two tokens: a “#” sign
+and the string that follows it. In such cases, we may need to use a custom tokenizer
+built for our purpose. To complete our example, we’ll perform word tokenization
+after we perform sentence tokenization.
+
+
+	2. Lemmatization:
+	- What?
+		- Lemmatization is the process of mapping all the different forms of a word to its base word, or lemma
+		- Lemmatization requires more linguistic knowledge, and modeling and developing efficient lemmatizers 
+		remains an open problem in NLP research even now.
+		- 'went','gone','goes'	 => "go"
+		- "better" => "good"
+	Technique:
+		- WorldNetLemma
+		
+		
+	3. Stemming:
+	- What?
+		- Removing suffixes
+		- 'children' and 'childs' => 'child'
+		- 'cars' -> 'car'
+
+	Technique:
+		- Porter Stemmer: Đơn giản và phổ biến, nhưng đôi khi có thể không chính xác.
+		- Lancaster Stemmer: Mạnh mẽ hơn Porter, nhưng có thể làm ngắn quá mức.
+		- Snowball Stemmer: Cải tiến từ Porter, cân bằng giữa độ chính xác và hiệu suất.
+
+
+	4. Other pre-steps:
+		- Text Normalization
+		- Language detector: using Polyglot library
+		- Code mixing and transliteration: nhiều loại ngôn ngữ cùng lúc
+	
+	5. Advanced processing:
+	
+		- POS tagging (parts of speech) : identify name person or organization (proper noun)
+			+ NLTK, spaCy and Parsey McParseface Tagger
+		
+=========================================================================================================
+
+
+Text representation (feature engineering)
+• Basic vectorization approaches
+• Distributed representations
+• Universal language representation
+• Handcrafted features
+	
+	1. Vector Space Models: text units (characters, phonemes, words, phrases, sentences, paragraphs, and documents)
+		- 
+		- 
+		- 
+		- 
+		- 
+		- 
+		- 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
