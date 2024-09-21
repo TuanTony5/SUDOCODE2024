@@ -3,7 +3,7 @@ Data Scientist NLP program - Trainee
 # Information:
 Team 9
 ID: 240112
-Cú pháp nộp bài:    
+# Cú pháp nộp bài:    
      - [mentee ID]_[Tên bài tập]
      - Ví dụ: 240112_TextExtraction
      
