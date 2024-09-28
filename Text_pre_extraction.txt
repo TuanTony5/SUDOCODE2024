@@ -1,0 +1,130 @@
+Preliminaries
+	Sentence segmentation and word tokenization.
+Frequent steps
+	Stop word removal, stemming and lemmatization, removing digits/punctuation, lowercasing, etc.
+Other steps
+	Normalization, language detection, code mixing, transliteration, etc.
+Advanced processing
+	POS tagging, parsing, coreference resolution, etc
+
+Kaggle link for practice step by step:	https://www.kaggle.com/code/sudalairajkumar/getting-started-with-text-preprocessing/notebook
+
+==============================================================================================================================
+
+	1. Tokenization
+	Technique:
+	- Sentence segmentation: Break paragraph into sentences
+	- Word tokenization: Break into individual words
+	- Character tokenization: Chinese, Japanese
+	- Subword tokenization: 'Chatbots' => 'Chat' and 'bots'
+	Tools:
+	 - Basic: NLTK, Spacy, BERT tokenizer
+	 - Advanced: Byte-Pair, SentencePiece
+	 
+While readily available solutions work for most of our needs and most NLP libraries
+will have a tokenizer and sentence splitter bundled with them, it’s important to
+remember that they’re far from perfect. For example, consider this sentence: “Mr. Jack
+O’Neil works at Melitas Marg, located at 245 Yonge Avenue, Austin, 70272.” If we run
+this through the NLTK tokenizer, O, ‘, and Neil are identified as three separate tokens.
+Similarly, if we run the sentence: “There are $10,000 and €1000 which are there just
+for testing a tokenizer” through this tokenizer, while $ and 10,000 are identified as
+separate tokens, €1000 is identified as a single token. In another scenario, if we want
+to tokenize tweets, this tokenizer will separate a hashtag into two tokens: a “#” sign
+and the string that follows it. In such cases, we may need to use a custom tokenizer
+built for our purpose. To complete our example, we’ll perform word tokenization
+after we perform sentence tokenization.
+
+
+	2. Lemmatization:
+	- What?
+		- Lemmatization is the process of mapping all the different forms of a word to its base word, or lemma
+		- Lemmatization requires more linguistic knowledge, and modeling and developing efficient lemmatizers 
+		remains an open problem in NLP research even now.
+		- 'went','gone','goes'	 => "go"
+		- "better" => "good"
+	Technique:
+		- WorldNetLemma
+		
+		
+	3. Stemming:
+	- What?
+		- Removing suffixes
+		- 'children' and 'childs' => 'child'
+		- 'cars' -> 'car'
+
+	Technique:
+		- Porter Stemmer: Đơn giản và phổ biến, nhưng đôi khi có thể không chính xác.
+		- Lancaster Stemmer: Mạnh mẽ hơn Porter, nhưng có thể làm ngắn quá mức.
+		- Snowball Stemmer: Cải tiến từ Porter, cân bằng giữa độ chính xác và hiệu suất.
+
+
+	4. Other pre-steps:
+		- Text Normalization
+		- Language detector: using Polyglot library
+		- Code mixing and transliteration: nhiều loại ngôn ngữ cùng lúc
+	
+	5. Advanced processing:
+	
+		- POS tagging (parts of speech) : identify name person or organization (proper noun)
+			+ NLTK, spaCy and Parsey McParseface Tagger
+		
+=========================================================================================================
+
+
+Text representation (feature engineering) ===> Vector Space Model
+• Basic vectorization approaches
+• Distributed representations
+• Universal language representation
+• Handcrafted features
+	
+	1. Vector Space Models: text units (characters, phonemes, words, phrases, sentences, paragraphs, and documents)
+	
+	
+	=========================================================================================================
+	
+Text representation: Convert words to vectors
+
+- One-hot and Label (Dont use) because:
+	+ Out of memory
+	+ Out of vocabulary
+	+ Low accuracy (not capture the meaning)
+	+ Not fix size for ML models
+==> DUMBBBBBBBBBBBBBBBBBBB
+
+- Bag Of Words:
+Có rất nhiều từ trong từ điển không xuất hiện trong một văn bản. Như vậy các vector đặc trưng thu được thường có rất nhiều phần tử bằng 0. Các vector có nhiều phần tử bằng 0 được gọi là sparse vector (sparse hiểu theo nghĩa là thưa thớt, rải rác, tôi xin phép chỉ sử dụng khái niệm này bằng tiếng Anh). Để việc lưu trữ được hiệu quả hơn, ta không lưu cả vector đó mà chỉ lưu vị trí của các phần tử khác 0 và giá trị tương ứng. Lưu ý: nếu có hơn 50% số phần tử khác 0, việc làm này lại phản tác dụng!
+
+Ngoài ra mất thông tin thứ tự ví dụ: E k yêu anh, em yêu anh không?
+
+---> Bag of N-grams
+	• It captures some context and word-order information in the form of n-grams.
+	• Thus, resulting vector space is able to capture some semantic similarity. Docu‐
+	ments having the same n-grams will have their vectors closer to each other in
+	Euclidean space as compared to documents with completely different n-grams.
+	• As n increases, dimensionality (and therefore sparsity) only increases rapidly.
+	• It still provides no way to address the OOV problem.
+
+- TF-IDF (term frequency - inverse document frequency)
+
+	TF (term frequency) measures how often a term or word occurs in a given document.
+	
+				(Number of occurrences of term t in document d)
+		TF(t,d)	=	-----------------------------------------------
+				(Total number of terms in the document d)
+	
+	IDF (inverse document frequency) measures the importance of the term across a corpus.
+
+		 		( Total number of documents in the corpus)
+		IDF(t) = log(e) --------------------------------------------		
+				( Number of documents with term t in them)
+
+	==> TF-IDF score = TF * IDF.
+
+
+
+
+
+
+
+
+
